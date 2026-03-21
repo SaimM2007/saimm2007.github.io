@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BLAX — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;1,700&family=Geist:wght@300;400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: rgba(255,255,255,0.04);
+      --surface-hover: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.16);
+      --text: #e8e8ee;
+      --text-muted: #6b6b7a;
+      --text-dim: #9898aa;
+      --accent: #a78bfa;
+      --accent2: #67e8f9;
+      --serif: 'Fraunces', Georgia, serif;
+      --sans: 'Geist', sans-serif;
+      --mono: 'Geist Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 1.4rem 2rem;
+      background: rgba(10, 10, 15, 0.6);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav a {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a:hover, nav a.active { color: var(--text); }
+    nav a.active { color: var(--text); }
+
+    /* ── Layout ── */
+    .page {
+      display: none;
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 8rem 2rem 6rem;
+      min-height: 100vh;
+    }
+    .page.active { display: block; }
+
+    /* ── Page Heading ── */
+    .page-title {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 3.5rem;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    /* ── Glass Card ── */
+    .glass-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 1rem;
+      backdrop-filter: blur(8px);
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .glass-card:hover {
+      background: var(--surface-hover);
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
+    }
+
+    /* ── Experience ── */
+    .exp-card {
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      gap: 0 1.2rem;
+      align-items: start;
+    }
+    .exp-logo {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      background: var(--surface-hover);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+    .exp-main { min-width: 0; }
+    .exp-title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+    .exp-company {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+    }
+    .exp-desc {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
+    .exp-meta {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .exp-location {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      margin-bottom: 0.2rem;
+    }
+    .exp-date {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: var(--mono);
+    }
+
+    /* ── Section Label ── */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 2.5rem 0 1rem;
+      padding-left: 0.1rem;
+    }
+    .section-label:first-of-type { margin-top: 0; }
+
+    /* ── Projects ── */
+    .projects-featured {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    @media (max-width: 640px) { .projects-featured { grid-template-columns: 1fr; } }
+
+    .proj-card-featured {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      backdrop-filter: blur(8px);
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .proj-card-featured:hover {
+      background: var(--surface-hover);
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .proj-name {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .proj-desc {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .proj-links {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 0.9rem;
+    }
+    .proj-link {
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      color: var(--accent);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.15s;
+    }
+    .proj-link:hover { opacity: 1; }
+
+    /* Tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .tag:hover, .tag.active {
+      background: rgba(167,139,250,0.12);
+      border-color: rgba(167,139,250,0.35);
+      color: var(--accent);
+    }
+    .tag.type { }
+    .tag.lang {
+      border-color: rgba(103,232,249,0.2);
+      color: rgba(103,232,249,0.6);
+    }
+    .tag.lang:hover, .tag.lang.active {
+      background: rgba(103,232,249,0.1);
+      border-color: rgba(103,232,249,0.4);
+      color: var(--accent2);
+    }
+    .tag.era {
+      border-color: rgba(255,255,255,0.06);
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+    .tag.hackathon {
+      border-color: rgba(250,204,21,0.2);
+      color: rgba(250,204,21,0.6);
+    }
+    .tag.hackathon:hover, .tag.hackathon.active {
+      background: rgba(250,204,21,0.1);
+      border-color: rgba(250,204,21,0.4);
+      color: #fde047;
+    }
+
+    /* Filter bar */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+      padding: 1rem 1.2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      backdrop-filter: blur(8px);
+    }
+    .filter-bar .filter-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      width: 100%;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Search */
+    .search-wrap {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    .search-input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 1rem 0.65rem 2.4rem;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input::placeholder { color: var(--text-muted); }
+    .search-input:focus { border-color: var(--border-hover); }
+    .search-icon {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Project list items */
+    .proj-list { display: flex; flex-direction: column; gap: 0.6rem; }
+    .proj-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      backdrop-filter: blur(8px);
+      transition: background 0.15s, border-color 0.15s;
+      cursor: default;
+    }
+    .proj-list-item:hover {
+      background: var(--surface-hover);
+      border-color: var(--border-hover);
+    }
+    .proj-list-item.hidden { display: none; }
+    .proj-list-main { flex: 1; min-width: 0; }
+    .proj-list-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .proj-list-desc {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+    .proj-list-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .proj-list-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      flex-shrink: 0;
+    }
+
+    /* Show more */
+    .show-more-btn {
+      display: block;
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.7rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      text-align: center;
+    }
+    .show-more-btn:hover {
+      background: var(--surface-hover);
+      color: var(--text);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .exp-card { grid-template-columns: 40px 1fr; }
+      .exp-meta { display: none; }
+      nav { gap: 1.2rem; }
+    }
+    /* ── Home / About ── */
+    .home-hero {
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3.5rem;
+    }
+    .home-greeting {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.6rem;
+    }
+    .home-name {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 9vw, 6.5rem);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 1.4rem;
+    }
+    .home-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .home-tagline {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+      max-width: 520px;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    .home-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .home-link-btn {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      padding: 0.5rem 1.1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.15s;
+      background: var(--accent);
+      color: #0a0a0f;
+      font-weight: 500;
+    }
+    .home-link-btn.ghost {
+      background: var(--surface);
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+    }
+    .home-link-btn:hover { opacity: 0.85; }
+    .home-link-btn.ghost:hover {
+      background: var(--surface-hover);
+      color: var(--text);
+      border-color: var(--border-hover);
+    }
+    .home-section { margin-bottom: 3rem; }
+    .home-bio {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .home-bio p {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+      max-width: 640px;
+    }
+    .home-now-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+    @media (max-width: 560px) { .home-now-grid { grid-template-columns: 1fr; } }
+    .home-now-card {
+      padding: 1rem 1.2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      backdrop-filter: blur(8px);
+    }
+    .home-now-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .home-now-val {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+    .home-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .fact-pill {
+      font-size: 0.8rem;
+      padding: 0.35rem 0.8rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-dim);
+      font-family: var(--sans);
+    }
+
+    /* ── Me Page ── */
+    .me-sections {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 640px;
+    }
+    .me-section {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .me-section:last-child { border-bottom: none; }
+    .me-section-title {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: lowercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+    .me-section p {
+      font-size: 0.92rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    .me-thanks .me-section-title { color: var(--text-muted); }
+    .me-link {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(167,139,250,0.4);
+      transition: text-decoration-color 0.15s;
+    }
+    .me-link:hover { text-decoration-color: var(--accent); }
+
+    /* ── Blog ── */
+    .blog-list {
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-year {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      padding: 1.8rem 0 0.6rem;
+      border-top: 1px solid var(--border);
+      margin-top: 0.5rem;
+    }
+    .blog-year:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+    .blog-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .blog-item-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0;
+    }
+    .blog-title {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--text);
+      text-decoration: none;
+      line-height: 1.5;
+      transition: color 0.15s;
+      flex: 1;
+    }
+    .blog-title:hover { color: var(--accent); }
+    .blog-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: all 0.15s;
+      font-family: var(--mono);
+      line-height: 1;
+    }
+    .blog-toggle:hover {
+      border-color: var(--border-hover);
+      color: var(--text);
+    }
+    .blog-toggle.open { color: var(--accent); border-color: rgba(167,139,250,0.4); }
+    .blog-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-top: 0.5rem;
+      display: none;
+    }
+    .blog-desc.visible { display: block; }
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .blog-date {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+    .blog-tag-pill {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      background: rgba(167,139,250,0.08);
+      border: 1px solid rgba(167,139,250,0.2);
+      color: var(--accent);
+      opacity: 0.7;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a href="#" class="nav-link" data-page="experience">Experience</a>
+  <a href="#" class="nav-link active" data-page="experience">Projects</a>
+  <a href="#" class="nav-link" data-page="blog">Blog</a>
+  <a href="#" class="nav-link" data-page="me">Me</a>
+</nav>
+
+<!-- ── EXPERIENCE PAGE ── -->
+<div class="page active" id="page-experience">
+  <h1 class="page-title">Experience</h1>
+
+  <p class="section-label">Current</p>
+
+  <div class="glass-card">
+    <div class="exp-card">
+      <div class="exp-logo">AC</div>
+      <div class="exp-main">
+        <div class="exp-title">Software Engineer Intern</div>
+        <div class="exp-company">Acme Corp · Internship</div>
+        <div class="exp-desc">Building ML-powered features for real-time data pipelines. Working across the full stack with a focus on model integration and backend systems.</div>
+      </div>
+      <div class="exp-meta">
+        <div class="exp-location">New York, NY</div>
+        <div class="exp-date">Summer 2025</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <div class="exp-card">
+      <div class="exp-logo">ML</div>
+      <div class="exp-main">
+        <div class="exp-title">Machine Learning Researcher</div>
+        <div class="exp-company">Some Lab · Research</div>
+        <div class="exp-desc">Investigating graph neural networks for fraud detection. Implemented GraphSAGE-based pipeline on financial datasets with 94% recall.</div>
+      </div>
+      <div class="exp-meta">
+        <div class="exp-location">Remote</div>
+        <div class="exp-date">Spring 2025</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="section-label">Teaching & Leadership</p>
+
+  <div class="glass-card">
+    <div class="exp-card">
+      <div class="exp-logo">TA</div>
+      <div class="exp-main">
+        <div class="exp-title">Teaching Assistant — Data Structures</div>
+        <div class="exp-company">Rutgers University · Part-time</div>
+        <div class="exp-desc">Running weekly office hours and recitations for ~120 students. Grading assignments, writing test cases, and helping students debug their first real algorithms.</div>
+      </div>
+      <div class="exp-meta">
+        <div class="exp-location">New Brunswick, NJ</div>
+        <div class="exp-date">2024 – Present</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <div class="exp-card">
+      <div class="exp-logo">HK</div>
+      <div class="exp-main">
+        <div class="exp-title">Hackathon Organizer</div>
+        <div class="exp-company">Rutgers Tech Community · Leadership</div>
+        <div class="exp-desc">Coordinating logistics, sponsorships, and workshops for a 200+ person hackathon. Built internal tooling to manage registrations and team matching.</div>
+      </div>
+      <div class="exp-meta">
+        <div class="exp-location">New Brunswick, NJ</div>
+        <div class="exp-date">2024 – Present</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="section-label">Earlier</p>
+
+  <div class="glass-card">
+    <div class="exp-card">
+      <div class="exp-logo">OT</div>
+      <div class="exp-main">
+        <div class="exp-title">ML Engineer</div>
+        <div class="exp-company">Outamation · Contract</div>
+        <div class="exp-desc">Built agentic automation pipelines using LLMs. Shipped a document processing system that reduced manual review time by ~60%.</div>
+      </div>
+      <div class="exp-meta">
+        <div class="exp-location">Remote</div>
+        <div class="exp-date">2023</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PROJECTS PAGE ── -->
+<div class="page" id="page-projects">
+  <h1 class="page-title">Projects</h1>
+
+  <p class="section-label">Featured</p>
+  <div class="projects-featured">
+    <div class="proj-card-featured">
+      <div class="proj-name">FraudNet</div>
+      <div class="proj-desc">Graph-based fraud detection using GraphSAGE on financial transaction networks. Trained on IBM AMLSim dataset, deployed via FastAPI.</div>
+      <div class="proj-links">
+        <a class="proj-link" href="#">github ↗</a>
+        <a class="proj-link" href="#">demo ↗</a>
+      </div>
+      <div class="tags">
+        <span class="tag">ML</span>
+        <span class="tag lang">Python</span>
+        <span class="tag lang">PyTorch</span>
+      </div>
+    </div>
+    <div class="proj-card-featured">
+      <div class="proj-name">FallGuard</div>
+      <div class="proj-desc">Real-time fall detection system using YOLOv8n + OpenCV. Built for neurological motor impairment monitoring. Alerts via Twilio SMS.</div>
+      <div class="proj-links">
+        <a class="proj-link" href="#">github ↗</a>
+      </div>
+      <div class="tags">
+        <span class="tag">ML</span>
+        <span class="tag">CV</span>
+        <span class="tag lang">Python</span>
+      </div>
+    </div>
+    <div class="proj-card-featured">
+      <div class="proj-name">PulseFeed</div>
+      <div class="proj-desc">AI-powered news aggregator that clusters articles by topic using sentence transformers and serves a personalized feed via a lightweight web UI.</div>
+      <div class="proj-links">
+        <a class="proj-link" href="#">github ↗</a>
+        <a class="proj-link" href="#">live ↗</a>
+      </div>
+      <div class="tags">
+        <span class="tag">NLP</span>
+        <span class="tag lang">Python</span>
+        <span class="tag lang">JS</span>
+      </div>
+    </div>
+    <div class="proj-card-featured">
+      <div class="proj-name">NeuralLearn</div>
+      <div class="proj-desc">Adaptive learning platform that adjusts difficulty based on student performance. Built with a custom spaced repetition algorithm and a React frontend.</div>
+      <div class="proj-links">
+        <a class="proj-link" href="#">github ↗</a>
+      </div>
+      <div class="tags">
+        <span class="tag">Web</span>
+        <span class="tag lang">JS</span>
+        <span class="tag lang">Python</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="section-label" style="margin-top: 2.5rem;">All Projects</p>
+
+  <!-- Search -->
+  <div class="search-wrap">
+    <span class="search-icon">⌕</span>
+    <input class="search-input" type="text" placeholder="Search projects..." id="proj-search" />
+  </div>
+
+  <!-- Filter bar -->
+  <div class="filter-bar" id="filter-bar">
+    <span class="filter-label">Filter</span>
+    <span class="tag type filter-tag" data-filter="ML">ML</span>
+    <span class="tag type filter-tag" data-filter="Web">Web</span>
+    <span class="tag type filter-tag" data-filter="Game">Game</span>
+    <span class="tag type filter-tag" data-filter="Tool">Tool</span>
+    <span class="tag type filter-tag" data-filter="Systems">Systems</span>
+    <span class="tag type filter-tag" data-filter="CV">CV</span>
+    <span class="tag lang filter-tag" data-filter="Python">Python</span>
+    <span class="tag lang filter-tag" data-filter="C">C</span>
+    <span class="tag lang filter-tag" data-filter="JS">JS</span>
+    <span class="tag era filter-tag" data-filter="HS">HS</span>
+    <span class="tag era filter-tag" data-filter="College">College</span>
+    <span class="tag hackathon filter-tag" data-filter="Hackathon">Hackathon</span>
+  </div>
+
+  <!-- Project list -->
+  <div class="proj-list" id="proj-list">
+    <div class="proj-list-item" data-tags="ML Python College Hackathon" data-name="fraudnet fraud graph detection">
+      <div class="proj-list-main">
+        <div class="proj-list-name">FraudNet</div>
+        <div class="proj-list-desc">Graph-based fraud detection with GraphSAGE on financial transaction networks.</div>
+        <div class="proj-list-tags">
+          <span class="tag">ML</span><span class="tag lang">Python</span><span class="tag lang">PyTorch</span><span class="tag era">College</span><span class="tag hackathon">Hackathon</span>
+        </div>
+      </div>
+      <div class="proj-list-links"><a class="proj-link" href="#">gh ↗</a></div>
+    </div>
+
+    <div class="proj-list-item" data-tags="ML CV Python College Hackathon" data-name="fallguard fall detection yolo">
+      <div class="proj-list-main">
+        <div class="proj-list-name">FallGuard</div>
+        <div class="proj-list-desc">Real-time fall detection for neurological motor impairment monitoring using YOLOv8.</div>
+        <div class="proj-list-tags">
+          <span class="tag">ML</span><span class="tag">CV</span><span class="tag lang">Python</span><span class="tag era">College</span><span class="tag hackathon">Hackathon</span>
+        </div>
+      </div>
+      <div class="proj-list-links"><a class="proj-link" href="#">gh ↗</a></div>
+    </div>
+
+    <div class="proj-list-item" data-tags="Web JS Python College" data-name="pulsefeed news aggregator nlp">
+      <div class="proj-list-main">
+        <div class="proj-list-name">PulseFeed</div>
+        <div class="proj-list-desc">AI news aggregator with topic clustering via sentence transformers.</div>
+        <div class="proj-list-tags">
+          <span class="tag">NLP</span><span class="tag lang">Python</span><span class="tag lang">JS</span><span class="tag era">College</span>
+        </div>
+      </div>
+      <div class="proj-list-links"><a class="proj-link" href="#">gh ↗</a><a class="proj-link" href="#">live ↗</a></div>
+    </div>
+
+    <div class="proj-list-item" data-tags="Web JS Python College" data-name="neurallearn adaptive learning platform">
+      <div class="proj-list-main">
+        <div class="proj-list-name">NeuralLearn</div>
+        <div class="proj-list-desc">Adaptive learning platform with custom spaced repetition algorithm.</div>
+        <div class="proj-list-tags">
+          <span class="tag">Web</span><span class="tag lang">JS</span><span class="tag lang">Python</span><span class="tag era">College</span>
+        </div>
+      </div>
+      <div class="proj-list-links"><a class="proj-link" href="#">gh ↗</a></div>
+    </div>
+
+    <div class="proj-list-item" data-tags="Tool Python College" data-name="script automation cli tool">
+      <div class="proj-list-main">
+        <div class="proj-list-name">AutoPipe</div>
+        <div class="proj-list-desc">CLI tool for automating data preprocessing pipelines. Config-driven, supports 6 file formats.</div>
+        <div class="proj-list-tags">
+          <span class="tag">Tool</span><span class="tag lang">Python</span><span class="tag era">College</span>
+        </div>
+      </div>
+      <div class="proj-list-links"><a class="proj-link" href="#">gh ↗</a></div>
+    </div>
+
+    <div class="proj-list-item" data-tags="Game JS College" data-name="game browser puzzle fun">
+      <div class="proj-list-main">
+        <div class="proj-list-name">GridLock</div>
+        <div class="proj-list-desc">Browser-based puzzle game with procedurally generated levels. Made in a weekend for fun.</div>
+        <div class="proj-list-tags">
+          <span class="tag">Game</span><span class="tag lang">JS</span><span class="tag era">College</span>
+        </div>
+      </div>
+      <div class="proj-list-links"><a class="proj-link" href="#">gh ↗</a><a class="proj-link" href="#">play ↗</a></div>
+    </div>
+
+    <div class="proj-list-item" data-tags="Systems C College" data-name="systems low level c memory allocator">
+      <div class="proj-list-main">
+        <div class="proj-list-name">malloc-lite</div>
+        <div class="proj-list-desc">Custom memory allocator in C. Implements first-fit, best-fit, and buddy system strategies.</div>
+        <div class="proj-list-tags">
+          <span class="tag">Systems</span><span class="tag lang">C</span><span class="tag era">College</span>
+        </div>
+      </div>
+      <div class="proj-list-links"><a class="proj-link" href="#">gh ↗</a></div>
+    </div>
+
+    <div class="proj-list-item" data-tags="ML Python HS" data-name="first ml project classifier hs">
+      <div class="proj-list-main">
+        <div class="proj-list-name">SpamZapper</div>
+        <div class="proj-list-desc">My first real ML project. Naive Bayes spam classifier trained on the Enron dataset. Where it all started.</div>
+        <div class="proj-list-tags">
+          <span class="tag">ML</span><span class="tag lang">Python</span><span class="tag era">HS</span>
+        </div>
+      </div>
+      <div class="proj-list-links"><a class="proj-link" href="#">gh ↗</a></div>
+    </div>
+
+    <div class="proj-list-item" data-tags="Game Python HS" data-name="pygame game hs fun">
+      <div class="proj-list-main">
+        <div class="proj-list-name">Asteroid Run</div>
+        <div class="proj-list-desc">Pygame arcade shooter. First time I stayed up until 3am because I couldn't stop adding features.</div>
+        <div class="proj-list-tags">
+          <span class="tag">Game</span><span class="tag lang">Python</span><span class="tag era">HS</span>
+        </div>
+      </div>
+      <div class="proj-list-links"><a class="proj-link" href="#">gh ↗</a></div>
+    </div>
+  </div>
+  <button class="show-more-btn" id="show-more-btn">Show more projects</button>
+</div>
+
+<!-- ── HOME / ABOUT PAGE ── -->
+<div class="page" id="page-home">
+  <div class="home-hero">
+    <div class="home-greeting">hey, i'm</div>
+    <h1 class="home-name">BLAX<br/><em>Placeholder.</em></h1>
+    <p class="home-tagline">CS + Data Science @ Rutgers. I build things that think, move, and occasionally catch people falling.</p>
+
+    <div class="home-links">
+      <a class="home-link-btn" href="#">Resume ↗</a>
+      <a class="home-link-btn ghost" href="#">GitHub</a>
+      <a class="home-link-btn ghost" href="#">LinkedIn</a>
+      <a class="home-link-btn ghost" href="#">Email</a>
+    </div>
+  </div>
+
+  <div class="home-section">
+    <p class="section-label">About</p>
+    <div class="home-bio">
+      <p>I started with a Python script that barely ran. Now I care about building systems that actually work — ML pipelines, graph networks, real-time CV — the kind of stuff where the problem is harder than the tutorial.</p>
+      <p>Currently a first-year at Rutgers doing CS and Data Science (BAIT). I TA data structures, go deep on hackathons, and try to ship something every few weeks whether or not it's polished.</p>
+      <p>I'm into the intersection of ML and systems — when models have to run fast in the real world, not just in a notebook. Also into building for fun, not just for the resume.</p>
+    </div>
+  </div>
+
+  <div class="home-section">
+    <p class="section-label">Currently</p>
+    <div class="home-now-grid">
+      <div class="home-now-card">
+        <div class="home-now-label">Building</div>
+        <div class="home-now-val">This website. A few projects I'll talk about when they're ready.</div>
+      </div>
+      <div class="home-now-card">
+        <div class="home-now-label">Learning</div>
+        <div class="home-now-val">Linear algebra, systems architecture, and how to write cleaner code under pressure.</div>
+      </div>
+      <div class="home-now-card">
+        <div class="home-now-label">Reading</div>
+        <div class="home-now-val">Placeholder book title. Something technical, something not.</div>
+      </div>
+      <div class="home-now-card">
+        <div class="home-now-label">Thinking about</div>
+        <div class="home-now-val">How agentic systems will change what "software engineering" even means.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-section">
+    <p class="section-label">Quick facts</p>
+    <div class="home-facts">
+      <span class="fact-pill">📍 New Brunswick, NJ</span>
+      <span class="fact-pill">🎓 Rutgers CS + Data Science</span>
+      <span class="fact-pill">🧠 ML & Systems</span>
+      <span class="fact-pill">🏆 Hackathon regular</span>
+      <span class="fact-pill">🖥️ RTX 4060 daily driver</span>
+      <span class="fact-pill">✍️ Occasional blogger</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── BLOG PAGE ── -->
+<div class="page" id="page-blog">
+  <h1 class="page-title">Writing.</h1>
+
+  <div class="blog-list">
+
+    <div class="blog-year">2025</div>
+
+    <div class="blog-item">
+      <div class="blog-item-top">
+        <a class="blog-title" href="#" target="_blank">Graph-Based Fraud Detection: What I Learned Building with GraphSAGE</a>
+        <button class="blog-toggle" aria-label="Show description">+</button>
+      </div>
+      <div class="blog-desc">A writeup of the IBM Datathon project — why graph neural networks make sense for fraud, what GraphSAGE actually does, and what I'd do differently with more time.</div>
+      <div class="blog-meta">
+        <span class="blog-date">Mar 2025</span>
+        <span class="blog-tag-pill">ML</span>
+      </div>
+    </div>
+
+    <div class="blog-item">
+      <div class="blog-item-top">
+        <a class="blog-title" href="#" target="_blank">Building a Fall Detection System in 24 Hours</a>
+        <button class="blog-toggle" aria-label="Show description">+</button>
+      </div>
+      <div class="blog-desc">How my team went from zero to a working YOLOv8-based fall detection system at a neuroscience + AI hackathon. Dataset issues, time pressure, and what we shipped.</div>
+      <div class="blog-meta">
+        <span class="blog-date">Feb 2025</span>
+        <span class="blog-tag-pill">CV</span>
+        <span class="blog-tag-pill">Hackathon</span>
+      </div>
+    </div>
+
+    <div class="blog-item">
+      <div class="blog-item-top">
+        <a class="blog-title" href="#" target="_blank">Placeholder Article Title — Something You Actually Want to Write</a>
+        <button class="blog-toggle" aria-label="Show description">+</button>
+      </div>
+      <div class="blog-desc">Placeholder description. One or two sentences about what the article covers. Keep it honest, not marketing-y.</div>
+      <div class="blog-meta">
+        <span class="blog-date">Jan 2025</span>
+        <span class="blog-tag-pill">Opinion</span>
+      </div>
+    </div>
+
+    <div class="blog-year">2024</div>
+
+    <div class="blog-item">
+      <div class="blog-item-top">
+        <a class="blog-title" href="#" target="_blank">Another Placeholder — Earlier Writing</a>
+        <button class="blog-toggle" aria-label="Show description">+</button>
+      </div>
+      <div class="blog-desc">Placeholder. Even if older writing is rougher, keeping it shows growth. Don't hide it.</div>
+      <div class="blog-meta">
+        <span class="blog-date">Dec 2024</span>
+        <span class="blog-tag-pill">Misc</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="page" id="page-me">
+  <h1 class="page-title">Me.</h1>
+
+  <div class="me-sections">
+
+    <div class="me-section">
+      <h2 class="me-section-title">gaming</h2>
+      <p>Placeholder — write about what games you actually play, why you got into it, maybe how it connects to your interest in computers or systems. This is where you get to actually talk about yourself. Don't be concise here, that's the whole point of this page.</p>
+    </div>
+
+    <div class="me-section">
+      <h2 class="me-section-title">teaching</h2>
+      <p>I TA data structures at Rutgers and it's one of the things I genuinely look forward to. There's something about having to explain a concept clearly enough that someone else gets it — it forces you to actually understand it yourself. Office hours, recitations, debugging someone's linked list at 11pm — I'm into it. I've also done tutoring outside of school, and I think I want to keep finding ways to teach whatever I'm learning.</p>
+    </div>
+
+    <div class="me-section">
+      <h2 class="me-section-title">hackathons</h2>
+      <p>The 24-48 hour format genuinely appeals to me. You pick a problem, you build something real, and you ship it whether or not it's perfect. I've done the Rutgers BITS x IBM Datathon where we built a graph-based fraud detection network, and a neuroscience + AI hackathon where we built a real-time fall detection system using YOLOv8. There will be more. The crunch is the fun part.</p>
+    </div>
+
+    <div class="me-section">
+      <h2 class="me-section-title">building random stuff</h2>
+      <p>Placeholder — talk about the random projects you make for fun with no audience in mind. The ones that never go on a resume. The ones you made at 2am because you thought it'd be funny or cool or useful to you specifically. This section is where those live.</p>
+    </div>
+
+    <div class="me-section">
+      <h2 class="me-section-title">placeholder hobby</h2>
+      <p>Add something genuinely personal here — something that has nothing to do with CS. A sport, a creative thing, something you've been doing since you were a kid. This is the most memorable section of the page, don't skip it.</p>
+    </div>
+
+    <div class="me-section me-thanks">
+      <h2 class="me-section-title">thanks for reading.</h2>
+      <p>If you made it this far you probably get the vibe. Feel free to reach out — <a class="me-link" href="#">email</a>, <a class="me-link" href="#">LinkedIn</a>, or wherever.</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ── Page routing ──
+  const navLinks = document.querySelectorAll('.nav-link');
+  const pages = document.querySelectorAll('.page');
+
+  // Fix nav links
+  const navItems = [
+    { text: 'Home', page: 'home' },
+    { text: 'Experience', page: 'experience' },
+    { text: 'Projects', page: 'projects' },
+    { text: 'Blog', page: 'blog' },
+    { text: 'Me', page: 'me' },
+  ];
+  const nav = document.querySelector('nav');
+  nav.innerHTML = '';
+  navItems.forEach(item => {
+    const a = document.createElement('a');
+    a.href = '#';
+    a.className = 'nav-link';
+    a.dataset.page = item.page;
+    a.textContent = item.text;
+    if (item.page === 'home') a.classList.add('active');
+    nav.appendChild(a);
+  });
+
+  function showPage(pageId) {
+    pages.forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    const target = document.getElementById('page-' + pageId);
+    if (target) target.classList.add('active');
+    document.querySelectorAll(`.nav-link[data-page="${pageId}"]`).forEach(l => l.classList.add('active'));
+    window.scrollTo(0, 0);
+  }
+
+  document.addEventListener('click', e => {
+    const link = e.target.closest('.nav-link');
+    if (link) {
+      e.preventDefault();
+      showPage(link.dataset.page);
+    }
+  });
+
+  showPage('home');
+
+  // ── Project filtering ──
+  const allItems = Array.from(document.querySelectorAll('.proj-list-item'));
+  const INITIAL_SHOW = 6;
+  let activeFilters = new Set();
+  let searchQuery = '';
+  let showAll = false;
+
+  function applyFilters() {
+    let visible = 0;
+    allItems.forEach(item => {
+      const tags = item.dataset.tags || '';
+      const name = item.dataset.name || '';
+      const matchesSearch = !searchQuery || name.includes(searchQuery.toLowerCase()) || tags.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesFilter = activeFilters.size === 0 || [...activeFilters].every(f => tags.includes(f));
+      const shouldShow = matchesSearch && matchesFilter;
+      item.classList.toggle('hidden', !shouldShow);
+      if (shouldShow) visible++;
+    });
+
+    // Show more logic
+    if (!showAll) {
+      let count = 0;
+      allItems.forEach(item => {
+        if (!item.classList.contains('hidden')) {
+          count++;
+          if (count > INITIAL_SHOW) item.classList.add('hidden');
+        }
+      });
+    }
+
+    const btn = document.getElementById('show-more-btn');
+    const totalVisible = allItems.filter(i => !i.classList.contains('hidden')).length;
+    btn.style.display = visible > INITIAL_SHOW && !showAll ? 'block' : 'none';
+  }
+
+  document.querySelectorAll('.filter-tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      const f = tag.dataset.filter;
+      if (activeFilters.has(f)) {
+        activeFilters.delete(f);
+        tag.classList.remove('active');
+      } else {
+        activeFilters.add(f);
+        tag.classList.add('active');
+      }
+      showAll = false;
+      applyFilters();
+    });
+  });
+
+  document.getElementById('proj-search').addEventListener('input', e => {
+    searchQuery = e.target.value.trim();
+    showAll = false;
+    applyFilters();
+  });
+
+  document.getElementById('show-more-btn').addEventListener('click', () => {
+    showAll = true;
+    applyFilters();
+  });
+
+  applyFilters();
+
+  // ── Blog toggles ──
+  document.querySelectorAll('.blog-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const desc = btn.closest('.blog-item').querySelector('.blog-desc');
+      const open = desc.classList.toggle('visible');
+      btn.textContent = open ? '−' : '+';
+      btn.classList.toggle('open', open);
+    });
+  });
+
+</script>
+</body>
+</html>
