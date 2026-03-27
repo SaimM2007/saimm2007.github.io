@@ -4,7 +4,7 @@
       label: 'Current',
       items: [
         {
-          logo: 'AC',
+          logo: 'https://placehold.co/40x40?text=AC', // replace with actual logo URL
           title: 'Software Engineer Intern',
           company: 'Acme Corp · Internship',
           desc: 'Building ML-powered features for real-time data pipelines. Working across the full stack with a focus on model integration and backend systems.',
@@ -12,7 +12,7 @@
           date: 'Summer 2025',
         },
         {
-          logo: 'ML',
+          logo: 'https://placehold.co/40x40?text=ML', // replace with actual logo URL
           title: 'Machine Learning Researcher',
           company: 'Some Lab · Research',
           desc: 'Investigating graph neural networks for fraud detection. Implemented GraphSAGE-based pipeline on financial datasets with 94% recall.',
@@ -25,7 +25,7 @@
       label: 'Teaching & Leadership',
       items: [
         {
-          logo: 'TA',
+          logo: 'https://placehold.co/40x40?text=TA', // replace with actual logo URL
           title: 'Teaching Assistant — Data Structures',
           company: 'Rutgers University · Part-time',
           desc: 'Running weekly office hours and recitations for ~120 students. Grading assignments, writing test cases, and helping students debug their first real algorithms.',
@@ -33,7 +33,7 @@
           date: '2024 – Present',
         },
         {
-          logo: 'HK',
+          logo: 'https://placehold.co/40x40?text=HK', // replace with actual logo URL
           title: 'Hackathon Organizer',
           company: 'Rutgers Tech Community · Leadership',
           desc: 'Coordinating logistics, sponsorships, and workshops for a 200+ person hackathon. Built internal tooling to manage registrations and team matching.',
@@ -46,7 +46,7 @@
       label: 'Earlier',
       items: [
         {
-          logo: 'OT',
+          logo: 'https://placehold.co/40x40?text=OT', // replace with actual logo URL
           title: 'ML Engineer',
           company: 'Outamation · Contract',
           desc: 'Built agentic automation pipelines using LLMs. Shipped a document processing system that reduced manual review time by ~60%.',
@@ -66,7 +66,9 @@
     {#each section.items as exp}
       <div class="glass-card">
         <div class="exp-card">
-          <div class="exp-logo">{exp.logo}</div>
+          <div class="exp-logo">
+            <img src={exp.logo} alt="company logo" />
+          </div>
           <div class="exp-main">
             <div class="exp-title">{exp.title}</div>
             <div class="exp-company">{exp.company}</div>
@@ -81,3 +83,18 @@
     {/each}
   {/each}
 </div>
+
+<style>
+  .exp-logo {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  .exp-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+</style>
