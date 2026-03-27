@@ -4,20 +4,28 @@
       label: 'Current',
       items: [
         {
-          logo: 'https://placehold.co/40x40?text=AC', // replace with actual logo URL
-          title: 'Software Engineer Intern',
-          company: 'Acme Corp · Internship',
-          desc: 'Building ML-powered features for real-time data pipelines. Working across the full stack with a focus on model integration and backend systems.',
-          location: 'New York, NY',
-          date: 'Summer 2025',
+          logo: 'MA',
+          title: 'AI Systems Research Intern',
+          company: 'Mach-AI · Internship',
+          desc: 'Working with LLMs, MCP servers, and agentic systems.',
+          location: 'Los Angeles, CA',
+          date: 'Jan 2026 – Present',
         },
         {
-          logo: 'https://placehold.co/40x40?text=ML', // replace with actual logo URL
-          title: 'Machine Learning Researcher',
-          company: 'Some Lab · Research',
-          desc: 'Investigating graph neural networks for fraud detection. Implemented GraphSAGE-based pipeline on financial datasets with 94% recall.',
-          location: 'Remote',
-          date: 'Spring 2025',
+          logo: 'SE',
+          title: 'Founding Data Engineer',
+          company: 'Stealth Startup',
+          desc: 'Maintaining and automating data pipelines for AI systems.',
+          location: 'New Brunswick, NJ',
+          date: 'Feb 2026 – Present',
+        },
+        {
+          logo: 'MSA',
+          title: 'Software Engineer Extern',
+          company: 'Rutgers MSA · Externship',
+          desc: 'Contributing to a project-based initiative through the Rutgers MSA Ladders Externship Program.',
+          location: 'New Brunswick, NJ',
+          date: 'Mar 2026 – Present',
         },
       ],
     },
@@ -25,20 +33,20 @@
       label: 'Teaching & Leadership',
       items: [
         {
-          logo: 'https://placehold.co/40x40?text=TA', // replace with actual logo URL
-          title: 'Teaching Assistant — Data Structures',
+          logo: 'RU',
+          title: 'CS112 Course Staff',
           company: 'Rutgers University · Part-time',
-          desc: 'Running weekly office hours and recitations for ~120 students. Grading assignments, writing test cases, and helping students debug their first real algorithms.',
+          desc: 'Supporting students in CS112 (Data Structures) on Piazza and with course-related queries.',
           location: 'New Brunswick, NJ',
-          date: '2024 – Present',
+          date: 'Jan 2026 – Present',
         },
         {
-          logo: 'https://placehold.co/40x40?text=HK', // replace with actual logo URL
-          title: 'Hackathon Organizer',
-          company: 'Rutgers Tech Community · Leadership',
-          desc: 'Coordinating logistics, sponsorships, and workshops for a 200+ person hackathon. Built internal tooling to manage registrations and team matching.',
+          logo: 'RU',
+          title: 'Founding President',
+          company: '[Club Name] · Rutgers University',
+          desc: 'Co-founding and leading a new student organization at Rutgers.',
           location: 'New Brunswick, NJ',
-          date: '2024 – Present',
+          date: '2026 – Present',
         },
       ],
     },
@@ -46,12 +54,49 @@
       label: 'Earlier',
       items: [
         {
-          logo: 'https://placehold.co/40x40?text=OT', // replace with actual logo URL
-          title: 'ML Engineer',
-          company: 'Outamation · Contract',
-          desc: 'Built agentic automation pipelines using LLMs. Shipped a document processing system that reduced manual review time by ~60%.',
+          logo: 'BP',
+          title: 'Product Marketing Fellow',
+          company: 'Blueprint · Fellowship',
+          desc: 'Worked on the RU Shopping marketing plan and built a research-backed launch strategy with my team.',
+          location: 'New Brunswick, NJ',
+          date: 'Oct 2025 – Dec 2025',
+        },
+        {
+          logo: 'ISCJ',
+          title: 'Administrative Intern',
+          company: 'Islamic Society of Central Jersey',
+          desc: 'Digitized 400+ graveyard deed records and built a search system that made record lookup effortless for staff.',
+          location: 'Monmouth Junction, NJ',
+          date: 'May 2025 – Jun 2025',
+        },
+      ],
+    },
+    {
+      label: 'Programs',
+      items: [
+        {
+          logo: 'BTT',
+          title: 'AI/ML Fellow',
+          company: 'Break Through Tech · Fellowship',
+          desc: 'Selected for the 2026–2027 cohort. Completing ML Foundations and working on industry projects with partner companies.',
           location: 'Remote',
-          date: '2023',
+          date: 'Mar 2026 – Present',
+        },
+        {
+          logo: 'A4A',
+          title: 'Ignite Fellow',
+          company: 'AI4ALL · Program',
+          desc: 'Selected for AI4ALL Ignite, a competitive AI education and mentorship program.',
+          location: 'Remote',
+          date: 'Dec 2025 – Oct 2026',
+        },
+        {
+          logo: 'CP',
+          title: 'Applied AI Engineering',
+          company: 'CodePath · AI110',
+          desc: '10-week program in AI engineering and AI-assisted software development.',
+          location: 'Remote',
+          date: 'Feb 2026 – May 2026',
         },
       ],
     },
@@ -66,9 +111,7 @@
     {#each section.items as exp}
       <div class="glass-card">
         <div class="exp-card">
-          <div class="exp-logo">
-            <img src={exp.logo} alt="company logo" />
-          </div>
+          <div class="exp-logo">{exp.logo}</div>
           <div class="exp-main">
             <div class="exp-title">{exp.title}</div>
             <div class="exp-company">{exp.company}</div>
@@ -83,18 +126,3 @@
     {/each}
   {/each}
 </div>
-
-<style>
-  .exp-logo {
-    width: 40px;
-    height: 40px;
-    flex-shrink: 0;
-  }
-
-  .exp-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 8px;
-  }
-</style>
