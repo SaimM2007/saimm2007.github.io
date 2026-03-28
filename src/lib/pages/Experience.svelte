@@ -4,7 +4,7 @@
       label: 'Current',
       items: [
         {
-          logo: 'MA',
+          logo: '/mach-ai.png',
           title: 'AI Systems Research Intern',
           company: 'Mach-AI · Internship',
           desc: 'Working with LLMs, MCP servers, and agentic systems.',
@@ -12,7 +12,7 @@
           date: 'Jan 2026 – Present',
         },
         {
-          logo: 'SE',
+          logo: null,
           title: 'Founding Data Engineer',
           company: 'Stealth Startup',
           desc: 'Maintaining and automating data pipelines for AI systems.',
@@ -20,7 +20,7 @@
           date: 'Feb 2026 – Present',
         },
         {
-          logo: 'MSA',
+          logo: '/msa.png',
           title: 'Software Engineer Extern',
           company: 'Rutgers MSA · Externship',
           desc: 'Contributing to a project-based initiative through the Rutgers MSA Ladders Externship Program.',
@@ -33,7 +33,7 @@
       label: 'Teaching & Leadership',
       items: [
         {
-          logo: 'RU',
+          logo: '/rucs.png',
           title: 'CS112 Course Staff',
           company: 'Rutgers University · Part-time',
           desc: 'Supporting students in CS112 (Data Structures) on Piazza and with course-related queries.',
@@ -41,7 +41,7 @@
           date: 'Jan 2026 – Present',
         },
         {
-          logo: 'RU',
+          logo: '/rucs.png',
           title: 'Founding President',
           company: '[Club Name] · Rutgers University',
           desc: 'Co-founding and leading a new student organization at Rutgers.',
@@ -54,7 +54,7 @@
       label: 'Earlier',
       items: [
         {
-          logo: 'BP',
+          logo: '/blueprint.png',
           title: 'Product Marketing Fellow',
           company: 'Blueprint · Fellowship',
           desc: 'Worked on the RU Shopping marketing plan and built a research-backed launch strategy with my team.',
@@ -62,7 +62,7 @@
           date: 'Oct 2025 – Dec 2025',
         },
         {
-          logo: 'ISCJ',
+          logo: '/iscj.png',
           title: 'Administrative Intern',
           company: 'Islamic Society of Central Jersey',
           desc: 'Digitized 400+ graveyard deed records and built a search system that made record lookup effortless for staff.',
@@ -75,7 +75,7 @@
       label: 'Programs',
       items: [
         {
-          logo: 'BTT',
+          logo: '/btt.png',
           title: 'AI/ML Fellow',
           company: 'Break Through Tech · Fellowship',
           desc: 'Selected for the 2026–2027 cohort. Completing ML Foundations and working on industry projects with partner companies.',
@@ -83,7 +83,7 @@
           date: 'Mar 2026 – Present',
         },
         {
-          logo: 'A4A',
+          logo: '/ai4all.png',
           title: 'Ignite Fellow',
           company: 'AI4ALL · Program',
           desc: 'Selected for AI4ALL Ignite, a competitive AI education and mentorship program.',
@@ -91,7 +91,7 @@
           date: 'Dec 2025 – Oct 2026',
         },
         {
-          logo: 'CP',
+          logo: '/codepath.png',
           title: 'Applied AI Engineering',
           company: 'CodePath · AI110',
           desc: '10-week program in AI engineering and AI-assisted software development.',
@@ -111,7 +111,13 @@
     {#each section.items as exp}
       <div class="glass-card">
         <div class="exp-card">
-          <div class="exp-logo">{exp.logo}</div>
+          <div class="exp-logo">
+            {#if exp.logo}
+              <img src={exp.logo} alt={exp.company} />
+            {:else}
+              <span>SE</span>
+            {/if}
+          </div>
           <div class="exp-main">
             <div class="exp-title">{exp.title}</div>
             <div class="exp-company">{exp.company}</div>
@@ -126,3 +132,29 @@
     {/each}
   {/each}
 </div>
+
+<style>
+  .exp-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .exp-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 9px;
+  }
+  .exp-logo span {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+</style>
