@@ -4,7 +4,7 @@
       label: 'Current',
       items: [
         {
-          logo: 'images/mach-ai.png',
+          logo: '/images/mach-ai.png',
           title: 'AI Systems Research Intern',
           company: 'Mach-AI · Internship',
           desc: 'Working with LLMs, MCP servers, and agentic systems.',
@@ -13,7 +13,7 @@
           url: 'https://mach-ai.com',
         },
         {
-          logo: 'images/stealth.png',
+          logo: '/images/stealth.png',
           title: 'Founding Data Engineer',
           company: 'Stealth Startup',
           desc: 'Maintaining and automating data pipelines for AI systems.',
@@ -22,7 +22,7 @@
           url: null,
         },
         {
-          logo: 'images/msa.png',
+          logo: '/images/msa.png',
           title: 'Software Engineer Extern',
           company: 'Rutgers Muslim Student Association · Externship',
           desc: 'Contributing to a project-based initiative through the Rutgers MSA Ladders Externship Program.',
@@ -36,7 +36,7 @@
       label: 'Teaching & Leadership',
       items: [
         {
-          logo: 'images/rucs.png',
+          logo: '/images/rucs.png',
           title: 'CS112 Course Staff',
           company: 'Rutgers University · Part-time',
           desc: 'Supporting students in CS112 (Data Structures) on Piazza and with course-related queries.',
@@ -45,7 +45,7 @@
           url: 'https://rutgers.edu',
         },
         {
-          logo: 'images/rucs.png',
+          logo: '/images/rucs.png',
           title: 'Founding President',
           company: '[Club Name] · Rutgers University',
           desc: 'Co-founding and leading a new student organization at Rutgers.',
@@ -59,7 +59,7 @@
       label: 'Earlier',
       items: [
         {
-          logo: 'images/blueprint.png',
+          logo: '/images/blueprint.png',
           title: 'Product Marketing Fellow',
           company: 'Blueprint · Fellowship',
           desc: 'Worked on the RU Shopping marketing plan and built a research-backed launch strategy with my team.',
@@ -68,7 +68,7 @@
           url: 'https://www.linkedin.com/company/blueprint-rutgers/',
         },
         {
-          logo: 'images/iscj.png',
+          logo: '/images/iscj.png',
           title: 'Administrative Intern',
           company: 'Islamic Society of Central Jersey',
           desc: 'Digitized 400+ graveyard deed records and built a search system that made record lookup effortless for staff.',
@@ -82,7 +82,7 @@
       label: 'Programs',
       items: [
         {
-          logo: 'images/btt.png',
+          logo: '/images/btt.png',
           title: 'AI/ML Fellow',
           company: 'Break Through Tech · Fellowship',
           desc: 'Selected for the 2026–2027 cohort. Completing ML Foundations and working on industry projects with partner companies.',
@@ -91,7 +91,7 @@
           url: 'https://breakthroughtech.org',
         },
         {
-          logo: 'images/ai4all.png',
+          logo: '/images/ai4all.png',
           title: 'Ignite Fellow',
           company: 'AI4ALL · Program',
           desc: 'Selected for AI4ALL Ignite, a competitive AI education and mentorship program.',
@@ -100,7 +100,7 @@
           url: 'https://ai-4-all.org',
         },
         {
-          logo: 'images/codepath.png',
+          logo: '/images/codepath.png',
           title: 'Applied AI Engineering',
           company: 'CodePath · AI110',
           desc: '10-week program in AI engineering and AI-assisted software development.',
